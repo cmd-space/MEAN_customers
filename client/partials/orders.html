@@ -1,4 +1,10 @@
-<div>
-   <h3>Add a new order</h3>    
-   Customer <select ng-repeat="customer in customers"></select>
+<div ng-controller="orderController">
+    <h3>Add a new order</h3>    
+    Customer <select ng-model="select_cust" ng-options="customer.name for customer in customers">
+               <option value="">Choose a Customer</option>
+            </select> <br>
+    Order <select ng-model="select_qty" ng-options="qty for qty in quantity">
+             <option value="">Quantity</option>
+          </select>
+    <select ng-model="select_product" ng-options="product.name for product in products"></select>
 </div>

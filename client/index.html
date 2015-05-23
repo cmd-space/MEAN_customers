@@ -21,6 +21,12 @@
                       redirectTo: '/'
                     });
             });
+        store_app.factory('OrderFactory', function($http){
+            var factory = {};
+            var orders = [];
+            
+            return factory;
+        });
         
         store_app.factory('CustomerFactory', function($http){
             var factory = {};
@@ -63,6 +69,18 @@
                 CustomerFactory.destroyCustomer(id, function(res){
                     $scope.customers = res;
                 });
+            }
+        });
+        store_app.controller('orderController', function($scope, OrderFactory){
+            var quantity = [];
+            $scope.quantity = quantity;
+            for(var i = 1; i <= 30; i++){
+                quantity.push(i);
+            }
+            console.log(quantity);
+            
+            $scope.testing = function(name){
+                console.log($scope.select_cust);
             }
         });
     </script>
