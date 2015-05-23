@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var CustomerSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, require: true, unique: true, trim: true},
     date: Date
 });
 

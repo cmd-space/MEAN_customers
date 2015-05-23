@@ -34,6 +34,7 @@
             factory.createCustomer = function(customer, callback){
                 $http.post('/create_cust', customer).success(function(data){
                     callback(data);
+                    console.log(data);
                 });
             }
             factory.destroyCustomer = function(id, callback){
@@ -51,7 +52,10 @@
             $scope.addCustomer = function(){
                 $scope.new_customer.date = new Date();
                 CustomerFactory.createCustomer($scope.new_customer, function(res){
-                    $scope.customers = res;
+                    $scope.customers = res.results;
+                    if(res.error !== undefined){
+                        alert(res.error);
+                    }
                 });
                 $scope.new_customer = {};
             }
