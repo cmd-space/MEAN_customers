@@ -38,8 +38,13 @@
             factory.addOrder = function(order, callback){
                 $http.post('/create_order', order).success(function(data){
                     callback(data);
-                    console.log(data);
                 });
+            }
+            factory.getCustomers = function(callback){
+                $http.get('/customers').success(function(output){
+                    var customers = output;
+                    callback(customers);
+                })
             }
             return factory;
         });
@@ -91,6 +96,10 @@
             var quantity = [];
             var products = [];
             var orders = [];
+            var customers = [];
+            OrderFactory.getCustomers(function(data){
+                $scope.customers = data;
+            });
             $scope.quantity = quantity;
             for(var i = 1; i <= 30; i++){
                 quantity.push(i);
