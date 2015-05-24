@@ -24,7 +24,17 @@
         store_app.factory('OrderFactory', function($http){
             var factory = {};
             var orders = [];
-            
+            var products = [];
+            factory.getOrders = function(callback){
+                $http.get('/orders').success(function(output){
+                    orders = output;
+                    callback(orders);
+                });
+            }
+            factory.getProducts = function(callback){
+                products = ['Nike Shoes', 'Black Belts', 'Ice Cream', 'Candy'];
+                callback(products);
+            }
             return factory;
         });
         
@@ -73,14 +83,23 @@
         });
         store_app.controller('orderController', function($scope, OrderFactory){
             var quantity = [];
+            var products = [];
             $scope.quantity = quantity;
             for(var i = 1; i <= 30; i++){
                 quantity.push(i);
             }
-            console.log(quantity);
-            
-            $scope.testing = function(name){
-                console.log($scope.select_cust);
+            OrderFactory.getProducts(function(data){
+                $scope.products = data;
+            });
+            $scope.addOrder = function(){
+                $scope.new_order.date = new Date();
+                $scope.new_order.name = $scope.new_order.name.name;
+                console.log($scope.new_order);
+                return false;
+                $http.post('/create_order', $scope.new_order).success(function(data){
+                    callback(data);
+                    console.log(data);
+                });
             }
         });
     </script>
