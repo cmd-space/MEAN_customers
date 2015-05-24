@@ -14,7 +14,7 @@ module.exports = function(app){
     app.post('/destroy_cust', function(req, res){
         customers.destroy(req, res);
     });
-    app.post('create_order', function(req, res){
+    app.post('/create_order', function(req, res){
         orders.create(req, res);
     });
 }

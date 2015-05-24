@@ -23,7 +23,7 @@
             <td ng-bind="order.name"></td>
             <td ng-bind="order.product"></td>
             <td ng-bind="order.quantity"></td>
-            <td ng-bind="order.date"></td>
+            <td ng-bind="order.date | date: 'MMMM d yyyy'"></td>
         </tr>
     </table>
 </div>

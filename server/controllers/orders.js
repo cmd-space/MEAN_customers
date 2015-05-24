@@ -13,7 +13,7 @@ module.exports = (function(){
             });
         },
         create: function(req, res){
-            var newOrder = new Order({name: req.body.name, product: req.body.product, quantity: req.body.quantity, date: req.body.date});
+            var newOrder = new Order({name: req.body.name, product: req.body.product, quantity: req.body.quantity, cust_id: req.body.cust_id, date: req.body.date});
             newOrder.save(function(err, results){
                 if(err){
                     console.log(err);
